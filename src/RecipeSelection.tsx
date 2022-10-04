@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import Recipe from "./Recipe";
+import type {RecipeData} from "./App";
 
-type Ingredient = { name: string };
-type RecipeData = { id: number, name: string, description: string, ingredients: Array<Ingredient> };
-type Props = { recipes: Array<RecipeData>, selectedRecipe: number, onSelectRecipe: (recipeId: number) => void };
+type Props = { recipes: Array<RecipeData>, selectedRecipe: RecipeData, onSelectRecipe: (recipeData: RecipeData) => void };
 
 export default function RecipeSelection(props: Props) {
     const recipes = props.recipes;
@@ -12,9 +11,22 @@ export default function RecipeSelection(props: Props) {
     const setSelectedRecipe = props.onSelectRecipe;
 
     function handleChange(evt) {
-        console.log(evt.target);
-        setSelectedRecipe(evt.target.id)
+        for (let i in recipes) {
+            if (recipes[i].id === +evt.target.value) {
+                setSelectedRecipe(recipes[i])
+                break
+            }
+        }
     }
+
+    // function renderRecipeDropDown(filterId) {
+    //     if (filterId) {
+    //         return recipes.filter(recipe => recipe.id !== filterId).map(data => <option key={data.id}
+    //                                                                                     value={data.id}>{data.name}</option>)
+    //     } else {
+    //         return recipes.map(data => <option key={data.id} value={data.id}>{data.name}</option>)
+    //     }
+    // }
 
     return (
         <>

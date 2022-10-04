@@ -1,4 +1,10 @@
 .RecipeList-div {
     display: inline-flex;
-    padding: 2em;
+    padding: 1em;
+    flex-wrap: wrap;
+}
+
+.RecipeList-recipe-div {
+    display: inline-flex;
+    padding: 1em;
 }
