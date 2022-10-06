@@ -10,8 +10,6 @@ export default function RecipeForm(props: Props) {
     const [formData, setFormData] = useState<RecipeData>({...props.selectedRecipe});
     const submissionType = props.submissionType;
 
-    // let ingredients = formData.ingredients.map((ingredient) => ingredient.name)
-
     async function handleSubmit() {
         const {id, ...payload} = formData;
         let resp;
@@ -23,12 +21,14 @@ export default function RecipeForm(props: Props) {
         console.log(resp);
     }
 
+    // returning array, not string
     const ingredientsObjToStr = (ingredients) => {
         return ingredients.map((ingredient) => {
             return ingredient.name
         });
     }
 
+    // ingredient object requires ID. be more explicit about what this returns
     const ingredientStrToObj = (ingredients) => {
         let ingredientNames = ingredients.split(',');
         return ingredientNames.map((name) => ({name}));
@@ -36,7 +36,7 @@ export default function RecipeForm(props: Props) {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form data-testid="recipe-form" onSubmit={handleSubmit}>
                 <label htmlFor="recipeName">Recipe Name:</label>
                 <input type='text' id="recipeName" name="name" value={formData.name}
                        onChange={(evt) => setFormData({...formData, [evt.target.name]: evt.target.value})}/>

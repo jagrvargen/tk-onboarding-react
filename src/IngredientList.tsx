@@ -1,8 +1,6 @@
-// @ts-ignore
 import React from "react";
 
 export default function IngredientList(props) {
-    console.log(props)
     const ingredients = props.ingredientsList;
     return (
         <ul>
