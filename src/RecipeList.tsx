@@ -3,13 +3,11 @@ import axios from "axios";
 import './RecipeList.css';
 import Recipe from "./Recipe";
 import RecipeForm from "./RecipeForm";
-import {RecipeData} from "./App";
 
 const URL = "http://127.0.0.1:8000/";
 
 
 export default function RecipeList() {
-    const [selectedRecipe, setSelectedRecipe] = useState<RecipeData>(null);
     const [recipes, setRecipes] = useState([]);
     const [displayRecipe, setDisplayRecipe] = useState<boolean>(false);
 

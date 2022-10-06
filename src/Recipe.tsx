@@ -3,7 +3,6 @@ import IngredientList from "./IngredientList";
 import {RecipeData} from "./App";
 import RecipeForm from "./RecipeForm";
 import {deleteRecipe} from "./api";
-import axios from "axios";
 
 type Props = { recipes: Array<RecipeData>, setRecipes: (recipes: Array<RecipeData>) => void, selectedRecipe: RecipeData }
 

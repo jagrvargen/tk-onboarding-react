@@ -13,21 +13,3 @@ test('renders app title', () => {
     const title = screen.getByRole("heading", {name: 'My Fun Recipes'});
     expect(title).toBeInTheDocument();
 });
-
-// test('test add recipe button renders form', () => {
-//     render(<BrowserRouter> <App/></BrowserRouter>);
-//     const resp = {
-//         id: 1,
-//         name: 'Test Recipe',
-//         description: 'Test Recipe Description',
-//         ingredients: [{name: 'Test ingredient'}]
-//     }
-//     axios.get.mockResolvedValue(resp);
-//
-//     const recipe = screen.getByText('button')
-//     // const addRecipeButton = screen.getByLabelText("button");
-//     // expect(addRecipeButton.textContent).toBe('Add Recipe');
-//     //
-//     // fireEvent.click(addRecipeButton);
-//
-// })

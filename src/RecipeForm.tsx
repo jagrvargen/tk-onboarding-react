@@ -21,15 +21,13 @@ export default function RecipeForm(props: Props) {
         console.log(resp);
     }
 
-    // returning array, not string
-    const ingredientsObjToStr = (ingredients) => {
+    const ingredientsArrToStr = (ingredients) => {
         return ingredients.map((ingredient) => {
             return ingredient.name
-        });
+        }).join(',');
     }
 
-    // ingredient object requires ID. be more explicit about what this returns
-    const ingredientStrToObj = (ingredients) => {
+    const ingredientStrToArray = (ingredients) => {
         let ingredientNames = ingredients.split(',');
         return ingredientNames.map((name) => ({name}));
     }
@@ -45,10 +43,10 @@ export default function RecipeForm(props: Props) {
                        onChange={(evt) => setFormData({...formData, [evt.target.name]: evt.target.value})}/>
                 <label htmlFor="addIngredient">Add Ingredients:</label>
                 <input type='text' id="addIngredients" name="ingredients"
-                       placeholder="eggs, cheese, ..." value={ingredientsObjToStr(formData.ingredients)}
+                       placeholder="eggs, cheese, ..." value={ingredientsArrToStr(formData.ingredients)}
                        onChange={(evt) => setFormData({
                            ...formData,
-                           [evt.target.name]: ingredientStrToObj(evt.target.value)
+                           [evt.target.name]: ingredientStrToArray(evt.target.value)
                        })}/>
                 <button type="submit">Submit</button>
             </form>
