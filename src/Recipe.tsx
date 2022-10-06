@@ -5,13 +5,13 @@ import RecipeForm from "./RecipeForm";
 import {deleteRecipe} from "./api";
 import axios from "axios";
 
-type Props = { recipesArr: Array<RecipeData>, setRecipes: (recipes: Array<RecipeData>) => void, selectedRecipe: RecipeData, onSelectRecipe: (recipeData: RecipeData) => void }
+type Props = { recipes: Array<RecipeData>, setRecipes: (recipes: Array<RecipeData>) => void, selectedRecipe: RecipeData }
 
 export const URL = "http://127.0.0.1:8000/recipes/";
 
 export default function Recipe(props: Props) {
     const {id, name, description, ingredients} = props.selectedRecipe;
-    const setSelectedRecipe = props.onSelectRecipe;
+    const {recipes, setRecipes} = props;
     const [showForm, setShowForm] = useState<boolean>(false);
 
     const handleEditRecipe = () => {
@@ -19,11 +19,12 @@ export default function Recipe(props: Props) {
     }
 
     async function handleDeleteRecipe() {
-        setSelectedRecipe(props.selectedRecipe);
         let resp = await deleteRecipe(id);
-        // if resp 200, setselectedrecipe
-        setSelectedRecipe(null);
-        console.log(resp);
+        if (resp.status === 204) {
+            setRecipes(recipes.filter(recipe => recipe.id !== id));
+        } else {
+            console.log(resp);
+        }
     }
 
     return (

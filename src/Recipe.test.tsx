@@ -17,7 +17,7 @@ test('renders selected recipe data', () => {
     const mockSetSelectedRecipe = jest.fn();
     mockSetSelectedRecipe.mockReturnValue({});
 
-    render(<Recipe selectedRecipe={mockedSelectedRecipe} onSelectRecipe={mockSetSelectedRecipe}/>);
+    // render(<Recipe selectedRecipe={mockedSelectedRecipe} onSelectRecipe={mockSetSelectedRecipe}/>);
 
     // Check heading render correct data
     const h2 = screen.getByRole('heading', {level: 2});

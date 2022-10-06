@@ -22,7 +22,6 @@ export default function RecipeList() {
 
         fetchList();
     }, []);
-    // delete recipe from `recipes` without re-pinging API.
 
     const displayRecipeForm = () => {
         setDisplayRecipe(!displayRecipe);
@@ -30,8 +29,7 @@ export default function RecipeList() {
 
     return (
         <div className={'RecipeList-div'}>
-            {recipes.map(recipe => <Recipe recipesArr={recipes} setRecipes={setRecipes} selectedRecipe={recipe}
-                                           onSelectRecipe={setSelectedRecipe}/>)}
+            {recipes.map(recipe => <Recipe recipes={recipes} setRecipes={setRecipes} selectedRecipe={recipe}/>)}
             <button onClick={displayRecipeForm}><i className="fa-solid fa-plus">Add Recipe</i></button>
             {displayRecipe ? <RecipeForm selectedRecipe={{id: null, name: "", description: "", ingredients: []}}
                                          submissionType='new'/> : null}
