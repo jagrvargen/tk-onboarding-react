@@ -24,8 +24,8 @@ export default function RecipeList() {
 
     return (
         <div data-testid="recipe-list" className={'RecipeList-div'}>
-            {recipes.map(recipe => <Recipe recipes={recipes} setRecipes={setRecipes} selectedRecipe={recipe}/>)}
-            <button onClick={displayRecipeForm}><i className="fa-solid fa-plus">Add Recipe</i></button>
+            {recipes.map(recipe => <Recipe key={recipe.id} recipes={recipes} setRecipes={setRecipes} selectedRecipe={recipe}/>)}
+            <button data-testid='add-recipe-button' onClick={displayRecipeForm}><i className="fa-solid fa-plus">Add Recipe</i></button>
             {displayRecipe ? <RecipeForm selectedRecipe={{id: null, name: "", description: "", ingredients: []}}
                                          submissionType='new'/> : null}
         </div>

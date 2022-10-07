@@ -27,7 +27,7 @@ export default function Recipe(props: Props) {
     }
 
     return (
-        <div>
+        <div data-testid={`recipe-${id}`}>
             <h2>{name}</h2>
             <h3>Description: <br/>{description}</h3>
             {ingredients.length > 0 ?
