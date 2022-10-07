@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
 import './RecipeList.css';
 import Recipe from "./Recipe";
 import RecipeForm from "./RecipeForm";
-
-const URL = "http://127.0.0.1:8000/";
+import {getAllRecipes} from "./api";
 
 
 export default function RecipeList() {
@@ -13,8 +11,7 @@ export default function RecipeList() {
 
     useEffect(() => {
         async function fetchList() {
-            const resp = await axios.get(URL + "recipes/");
-            console.log(resp);
+            const resp = await getAllRecipes();
             setRecipes(resp.data);
         }
 
@@ -26,7 +23,7 @@ export default function RecipeList() {
     }
 
     return (
-        <div className={'RecipeList-div'}>
+        <div data-testid="recipe-list" className={'RecipeList-div'}>
             {recipes.map(recipe => <Recipe recipes={recipes} setRecipes={setRecipes} selectedRecipe={recipe}/>)}
             <button onClick={displayRecipeForm}><i className="fa-solid fa-plus">Add Recipe</i></button>
             {displayRecipe ? <RecipeForm selectedRecipe={{id: null, name: "", description: "", ingredients: []}}

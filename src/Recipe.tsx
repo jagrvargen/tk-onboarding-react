@@ -18,11 +18,11 @@ export default function Recipe(props: Props) {
     }
 
     async function handleDeleteRecipe() {
-        let resp = await deleteRecipe(id);
-        if (resp.status === 204) {
+        const resp = await deleteRecipe(id);
+        if (resp !== undefined && resp.status === 204) {
             setRecipes(recipes.filter(recipe => recipe.id !== id));
         } else {
-            console.log(resp);
+            console.log(`DELETE recipe failed: ${resp}`);
         }
     }
 
